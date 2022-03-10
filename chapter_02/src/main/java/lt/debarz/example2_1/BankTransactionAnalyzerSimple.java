@@ -8,18 +8,15 @@ import java.util.List;
 
 /*Example 2-1. Calculating the sum of all statements*/
 public class BankTransactionAnalyzerSimple {
-    private static final String RESOURCES = "src/main/resources/";
+    private static final Path RESOURCES = (Paths.get("./chapter_02/src/main/resources/bank-data-simple.csv")).toAbsolutePath();
 
     public static void main(final String... args) throws IOException {
-        final Path path = Paths.get(RESOURCES + args[0]);
-        final List<String> lines = Files.readAllLines(path);
-        double total = 0d;
-        for(final String line: lines) {
-            final String[] columns = line.split(",");
-            final double amount = Double.parseDouble(columns[1]);
-            total += amount;
-        }
-        System.out.println("The total for all transactions is " + total);
+        Double sum = Files.readAllLines(RESOURCES).stream()
+                .map(line -> line.split(","))
+                .map(amount -> Double.parseDouble(amount[1]))
+                .reduce(Double::sum)
+                .orElse(0d);
+        System.out.println("The total for all transactions is " + sum);
     }
 
 }
