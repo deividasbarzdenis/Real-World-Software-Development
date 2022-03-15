@@ -30,3 +30,13 @@ public class BankStatementCSVParser {
         return bankTransactions;
     }
 }
+
+/*
+* The key benefit with this refactoring is that your main application is
+no longer responsible for the implementation of the parsing logic. It
+is now delegating that responsibility to a separate class and methods
+that can be maintained and updated independently. As new
+requirements come in for different queries, you can reuse the
+functionality encapsulated by the BankStatementCSVParser
+class.
+* */
