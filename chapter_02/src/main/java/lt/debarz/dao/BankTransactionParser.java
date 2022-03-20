@@ -1,4 +1,4 @@
-package lt.debarz.service;
+package lt.debarz.dao;
 
 import lt.debarz.domain.BankTransaction;
 
@@ -24,3 +24,11 @@ public class BankTransactionParser {
         throw new UnsupportedOperationException();
     }
 }
+
+/*
+* In fact, the methods are logically categorized to do “parsing.”
+However, they are different by nature and each of the methods would
+be unrelated. Grouping them would also break the SRP, which you
+learned about earlier, because the class is responsible for multiple
+concerns. Consequently, this approach is not recommended
+* */
