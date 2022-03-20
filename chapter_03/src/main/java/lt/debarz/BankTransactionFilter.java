@@ -12,5 +12,14 @@ package lt.debarz;
  * */
 @FunctionalInterface
 public interface BankTransactionFilter {
+
+    /**
+     *  a way to decouple the iteration logic from the
+     * business logic through this interface. Your method no longer depends
+     * on one specific implementation of a filter. You can introduce new
+     * implementations by passing them as an argument without modifying
+     * the body of this method. Hence, it is now open for extension and
+     * closed for modification
+     * */
     boolean test(BankTransaction bankTransaction);
 }
