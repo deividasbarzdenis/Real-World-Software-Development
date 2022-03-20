@@ -1,4 +1,4 @@
-package lt.debarz;
+package lt.debarz.dao;
 
 import lt.debarz.domain.BankTransaction;
 
