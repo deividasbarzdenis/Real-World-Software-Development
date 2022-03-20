@@ -10,6 +10,7 @@ import java.util.List;
  * flexibility for changing requirements.
  * */
 public interface BankStatementParser {
+
     BankTransaction parseFrom(String line);
     List<BankTransaction> parseLinesFrom(List<String> lines);
 }

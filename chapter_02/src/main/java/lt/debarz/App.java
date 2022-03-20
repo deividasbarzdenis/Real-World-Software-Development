@@ -24,7 +24,7 @@ public class App {
     public static void main( String[] args ) throws IOException {
         final BankStatementCSVParser bankStatementParser = new BankStatementCSVParser();
         final List<String> lines = Files.readAllLines(RESOURCES);
-        final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFromCSV(lines);
+        final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
 
         System.out.println("The total for all transactions is " + calculateTotalAmount(bankTransactions));
         System.out.println("Transactions in January " + selectInMonth(bankTransactions, Month.JANUARY));

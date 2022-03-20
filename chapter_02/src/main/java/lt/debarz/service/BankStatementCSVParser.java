@@ -13,22 +13,33 @@ import java.util.List;
 * the class BankStatementCSVParser declares two methods, parseFromCSV() and parseLinesFromCSV(),
 * that generate BankTransaction objects, which is a domain class  that models a bank statement
 * */
-public class BankStatementCSVParser {
+
+/*
+* BankStatementCSVParser will now become an implementation of that interface
+* but how do you decouple the BankStatementAnalyzer from the specific implementation of a
+* BankStatementCSVParser? You need to use the interface! By introducing a new method called analyze(), which takes
+* BankTransactionParser as an argument, you are no longer coupled to a specific implementation
+* */
+public class BankStatementCSVParser implements BankStatementParser{
+
     private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private BankTransaction parseFromCSV(final String line) {
+
+     public BankTransaction parseFrom(final String line) {
         final String[] columns = line.split(",");
         final LocalDate date = LocalDate.parse(columns[0], DATE_PATTERN);
         final double amount = Double.parseDouble(columns[1]);
         final String description = columns[2];
         return new BankTransaction(date, amount, description);
     }
-    public List<BankTransaction> parseLinesFromCSV(final List<String> lines) {
+
+    public List<BankTransaction> parseLinesFrom(final List<String> lines) {
         final List<BankTransaction> bankTransactions = new ArrayList<>();
         for(final String line: lines) {
-            bankTransactions.add(parseFromCSV(line));
+            bankTransactions.add(parseFrom(line));
         }
         return bankTransactions;
     }
+
 }
 
 /*
