@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import static java.util.stream.Collectors.toList;
 import static lt.debarz.Attributes.PATH;
 
 /**
@@ -25,7 +24,8 @@ public class TextFile {
     TextFile(final File file) throws IOException {
         attributes = new HashMap<>();
         attributes.put(PATH, file.getPath());
-        lines = Files.lines(file.toPath()).collect(toList());
+        lines = Files.lines(file.toPath())
+                .toList();
     }
 
     Map<String, String> getAttributes() {

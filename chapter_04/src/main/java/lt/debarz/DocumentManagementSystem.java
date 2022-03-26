@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.Collections.unmodifiableList;
 
@@ -21,13 +20,9 @@ public class DocumentManagementSystem {
         extensionToImporter.put("letter", new LetterImporter());
         extensionToImporter.put("report", new ReportImporter());
         extensionToImporter.put("jpg", new ImageImporter());
-    }
-    // end::importer_lookup[]
-    {
         extensionToImporter.put("invoice", new InvoiceImporter());
     }
 
-    // tag::importFile[]
     public void importFile(final String path) throws IOException {
         final File file = new File(path);
         if (!file.exists()) {
@@ -60,6 +55,6 @@ public class DocumentManagementSystem {
     public List<Document> search(final String query) {
         return documents.stream()
                 .filter(Query.parse(query))
-                .collect(Collectors.toList());
+                .toList();
     }
 }
