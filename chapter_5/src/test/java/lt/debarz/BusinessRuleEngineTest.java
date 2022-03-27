@@ -12,6 +12,7 @@ import static org.mockito.Mockito.verify;
  * and count behave correctly, as shown in Example 5-3
  * */
 class BusinessRuleEngineTest {
+
     final BusinessRuleEngine businessRule = new BusinessRuleEngine();
 
     @Test
@@ -21,8 +22,9 @@ class BusinessRuleEngineTest {
 
     @Test
     void shouldAddTwoActions(){
-        businessRule.addAction(() -> {});
-        businessRule.addAction(() -> {});
+
+        businessRule.addAction((mockFacts) -> {});
+        businessRule.addAction((mockFacts) -> {});
 
         assertEquals(2, businessRule.count());
     }
@@ -50,10 +52,25 @@ class BusinessRuleEngineTest {
     void shouldExecuteOneAction(){
         // given
         final Action mockAction = mock(Action.class);
+        final Facts mockFacts = mock(Facts.class);
         // when
         businessRule.addAction(mockAction);
         businessRule.run();
         // then
-        verify(mockAction).perform();
+        verify(mockAction).perform(mockFacts);
+    }
+
+    @Test
+    void shouldPerformAnActionWithFacts(){
+        // given
+        final Action mockAction = mock(Action.class);
+        final Facts mockFacts = mock(Facts.class);
+        final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(mockFacts);
+        // when
+        businessRuleEngine.addAction(mockAction);
+        businessRuleEngine.run();
+        // then
+        verify(mockAction).perform(mockFacts);
+
     }
 }
