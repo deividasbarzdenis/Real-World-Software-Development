@@ -22,14 +22,13 @@ public class DefaultRule extends Rule {
  * also returns this, which allows us to further chain a method. Finally, the method
  * createRule() is responsible for the creation of the DefaultRule object.
  * */
-    Rule rule = new RuleBuilder()
-            .when(facts -> "CEO".equals(facts.getFact("jobTitle")))
-            .then(facts -> {
-                var name = facts.getFact("name");
-                Mailer.sendEmail("sales@company.com", "Relevant customer: " +
-                        name);
-            })
-            .createRule();
+final Rule ruleSendEmailToSalesWhenCEO = RuleBuilder
+        .when(facts -> "CEO".equals(facts.getFact("jobTitle")))
+        .then(facts -> {
+            var name = facts.getFact("name");
+            Mailer.sendEmail("sales@company.com", "Relevant customer!!!: "
+                    + name);
+        });
 
     private static class Mailer {
 

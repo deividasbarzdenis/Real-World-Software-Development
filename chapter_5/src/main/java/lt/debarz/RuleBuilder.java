@@ -1,17 +1,14 @@
 package lt.debarz;
 
 public class RuleBuilder {
-    private Condition condition;
-    private Action action;
-    public RuleBuilder when(final Condition condition) {
+    private final Condition condition;
+    private RuleBuilder(final Condition condition) {
         this.condition = condition;
-        return this;
     }
-    public RuleBuilder then(final Action action) {
-        this.action = action;
-        return this;
+    public static RuleBuilder when(final Condition condition) {
+        return new RuleBuilder(condition);
     }
-    public Rule createRule() {
+    public Rule then(final Action action) {
         return new DefaultRule(condition, action);
     }
 }
