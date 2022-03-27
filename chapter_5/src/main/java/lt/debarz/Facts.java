@@ -1,6 +1,8 @@
 package lt.debarz;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,11 +17,21 @@ import java.util.Map;
  * object passed as an argument.
  * */
 @Data
+@Getter
+@Setter
 public class Facts {
 
     private final Map<String, String> facts = new HashMap<>();
 
     public void addFact(final String name, final String value) {
+        this.facts.put(name, value);
+    }
+
+    public String getFact(String name) {
+        return this.facts.get(name);
+    }
+
+    public void setFact(String name, String value) {
         this.facts.put(name, value);
     }
 }
