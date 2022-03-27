@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BusinessRuleEngine {
 
-    private List<Action> actions;
+    private List<Rule> rules;
     private Facts facts;
 
     public BusinessRuleEngine() {
@@ -13,18 +13,18 @@ public class BusinessRuleEngine {
 
     public BusinessRuleEngine(Facts facts) {
         this.facts = facts;
-        this.actions = new ArrayList<>();
+        this.rules = new ArrayList<>();
     }
 
     public Integer count() {
-        return this.actions.size();
+        return this.rules.size();
     }
 
-    public void addAction(final Action action) {
-        this.actions.add(action);
+    public void addRule(final Rule rule) {
+        this.rules.add(rule);
     }
 
     public void run() {
-        this.actions.forEach(action -> action.perform(facts));
+        this.rules.forEach(rule -> rule.perform(facts));
     }
 }

@@ -23,8 +23,8 @@ class BusinessRuleEngineTest {
     @Test
     void shouldAddTwoActions(){
 
-        businessRule.addAction((mockFacts) -> {});
-        businessRule.addAction((mockFacts) -> {});
+//        businessRule.addRule((a) -> {});
+//        businessRule.addRule(() -> {});
 
         assertEquals(2, businessRule.count());
     }
@@ -51,10 +51,10 @@ class BusinessRuleEngineTest {
     @Test
     void shouldExecuteOneAction(){
         // given
-        final Action mockAction = mock(Action.class);
+        final Rule mockAction = mock(Rule.class);
         final Facts mockFacts = mock(Facts.class);
         // when
-        businessRule.addAction(mockAction);
+        businessRule.addRule(mockAction);
         businessRule.run();
         // then
         verify(mockAction).perform(mockFacts);
@@ -63,11 +63,11 @@ class BusinessRuleEngineTest {
     @Test
     void shouldPerformAnActionWithFacts(){
         // given
-        final Action mockAction = mock(Action.class);
+        final Rule mockAction = mock(Rule.class);
         final Facts mockFacts = mock(Facts.class);
         final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(mockFacts);
         // when
-        businessRuleEngine.addAction(mockAction);
+        businessRuleEngine.addRule(mockAction);
         businessRuleEngine.run();
         // then
         verify(mockAction).perform(mockFacts);
