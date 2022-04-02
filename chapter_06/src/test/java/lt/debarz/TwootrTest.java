@@ -2,7 +2,7 @@ package lt.debarz;
 
 import org.junit.jupiter.api.Test;
 
-public class TwootrTest {
+class TwootrTest {
 
     /**
      * a good idea to start writing our project with a test class,
