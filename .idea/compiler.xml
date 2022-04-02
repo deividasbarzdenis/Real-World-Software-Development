@@ -11,6 +11,7 @@
         <module name="chapter_02" />
         <module name="chapter_03" />
         <module name="chapter_5" />
+        <module name="chapter_06" />
       </profile>
     </annotationProcessing>
   </component>
